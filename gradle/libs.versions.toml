@@ -109,7 +109,6 @@ quarkus-application = [
   'quarkus-scheduler',
   'quarkus-vertx',
   'quarkus-logging-json',
-  'vertx-hazelcast'
 ]
 
 quarkus-rest = [

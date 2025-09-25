@@ -1,7 +1,4 @@
 quarkus:
-  vertx:
-    cluster:
-      clustered: true
   log:
     console:
       json:
