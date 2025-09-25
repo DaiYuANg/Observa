@@ -1,0 +1,10 @@
+quarkus:
+  vertx:
+    cluster:
+      clustered: true
+  http:
+    port: -1
+  log:
+    console:
+      json:
+        enabled: false
