@@ -1,7 +1,0 @@
-quarkus:
-  log:
-    console:
-      json:
-        enabled: false
-  http:
-    port: 80
