@@ -1,5 +1,6 @@
 package org.observa.service;
 
+import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +16,8 @@ public class EventService {
   @Channel("quote")
   Emitter<String> quoteRequestEmitter;
 
-  public void sendEvent(EventDTO event) {
+  public Uni<Void> sendEvent(EventDTO event) {
     log.info("Sending event: {}", event);
-    quoteRequestEmitter.send(event.eventId());
+    return Uni.createFrom().completionStage(quoteRequestEmitter.send(event.eventId()));
   }
 }

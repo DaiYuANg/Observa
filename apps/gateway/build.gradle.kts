@@ -4,3 +4,9 @@ dependencies {
   implementation(libs.bundles.quarkus.rest)
   implementation(libs.quarkus.bucket4j)
 }
+
+tasks.quarkusDev{
+  extensionJvmOptions {
+    jvmArguments.addAll(listOf("-XX:+UseCompactObjectHeaders"))
+  }
+}

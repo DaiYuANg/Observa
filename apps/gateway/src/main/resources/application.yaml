@@ -3,3 +3,6 @@ quarkus:
     console:
       json:
         enabled: false
+  kafka:
+    devservices:
+      enabled:

@@ -17,6 +17,7 @@ git = { id = "com.xenoterracide.gradle.git", version = "0.13.0" }
 quarkus-bom = { group = "io.quarkus.platform", name = "quarkus-bom", version.ref = "quarkus" }
 quarkus-rest = { group = "io.quarkus", name = "quarkus-rest" }
 quarkus-qute = { group = "io.quarkus", name = "quarkus-qute" }
+quarkus-smallrye-health = { group = "io.quarkus", name = "quarkus-smallrye-health" }
 quarkus-messaging-kafka = { group = "io.quarkus", name = "quarkus-messaging-kafka" }
 quarkus-scheduler = { group = "io.quarkus", name = "quarkus-scheduler" }
 quarkus-smallrye-jwt = { group = "io.quarkus", name = "quarkus-smallrye-jwt" }
@@ -94,8 +95,6 @@ jimfs = { group = "com.google.jimfs", name = "jimfs", version = "1.3.0" }
 
 auto-factory = { group = "com.google.auto.factory", name = "auto-factory", version = "1.1.0" }
 
-vertx-hazelcast = { group = "io.vertx", name = "vertx-hazelcast" }
-
 jetbrains-annotation = { group = "org.jetbrains", name = "annotations", version = "26.0.2-1" }
 
 [bundles]
@@ -105,10 +104,10 @@ quarkus-application = [
   'quarkus-config-yaml',
   'quarkus-smallrye-context-propagation',
   'quarkus-quartz',
-  'quarkus-jfr',
   'quarkus-scheduler',
   'quarkus-vertx',
   'quarkus-logging-json',
+  'quarkus-smallrye-health'
 ]
 
 quarkus-rest = [
@@ -126,4 +125,16 @@ quarkus-kafka = [
 eclipse-collections = [
   'eclipse-collections-api',
   'eclipse-collections',
+]
+
+hibernate-reactive = [
+  'quarkus-hibernate-reactive',
+  'quarkus-hibernate-reactive-panache',
+  'quarkus-reactive-pg-client'
+]
+
+hibernate-orm = [
+  'quarkus-hibernate-orm',
+  'quarkus-hibernate-orm-panache',
+  'quarkus-jdbc-postgresql'
 ]

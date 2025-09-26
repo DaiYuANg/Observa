@@ -23,8 +23,9 @@ public class EventGatewayResource {
   @POST
   @Path("/")
   public Uni<Response> receiveEvent(EventDTO event) {
-    log.atInfo().log("Received event: " + event);
-    eventService.sendEvent(event);
-    return Uni.createFrom().item(Response.status(Response.Status.ACCEPTED).build());
+    return eventService.sendEvent(event)
+      .invoke(()-> log.atInfo().log("Received event: " + event))
+      .map(v -> Response.status(Response.Status.ACCEPTED).build())
+      ;
   }
 }
