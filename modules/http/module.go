@@ -1,8 +1,6 @@
 package http
 
 import (
-	"github/DaiYuANg/Observa/modules/config"
-
 	"github.com/danielgtaylor/huma/v2"
 	"github.com/danielgtaylor/huma/v2/adapters/humafiber"
 	"github.com/gofiber/fiber/v2"
@@ -15,21 +13,21 @@ var Module = fx.Module(
 		newServer,
 		newOpenapi,
 	),
-	fx.Invoke(lifecycle),
+	fx.Invoke(registerEndpoint, lifecycle),
 )
 
 func newServer() *fiber.App {
-	app := fiber.New()
+	app := fiber.New(fiber.Config{Prefork: false, EnablePrintRoutes: true})
 
 	return app
 }
 
-func newOpenapi(app *fiber.App, cfg *config.Config) huma.API {
-	humaCfg := huma.DefaultConfig("captcha service", "1.0.0")
+func newOpenapi(app *fiber.App) huma.API {
+	humaCfg := huma.DefaultConfig("observa", "1.0.0")
 	humaCfg.DocsPath = "/"
 	humaCfg.Servers = []*huma.Server{
-		{URL: "http://127.0.0.1:" + cfg.Http.GetPort()},
-		{URL: "http://localhost:" + cfg.Http.GetPort()},
+		{URL: "http://127.0.0.1:" + "8080"},
+		{URL: "http://localhost:" + "8080"},
 	}
 	return humafiber.New(app, humaCfg)
 }

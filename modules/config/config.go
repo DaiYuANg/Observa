@@ -1,6 +1,6 @@
 package config
 
-type Config struct {
+type AdminConfig struct {
 	Http HttpServer
 }
 
