@@ -3,6 +3,7 @@ package router
 import (
 	"github/DaiYuANg/Observa/internal/endpoint"
 
+	"github.com/nats-io/nats.go"
 	"go.uber.org/fx"
 )
 
@@ -12,6 +13,8 @@ var Module = fx.Module("router",
 	),
 )
 
-func newEventEndPoint() *EventEndpoint {
-	return &EventEndpoint{}
+func newEventEndPoint(c *nats.Conn) *EventEndpoint {
+	return &EventEndpoint{
+		nats: c,
+	}
 }

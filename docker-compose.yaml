@@ -1,0 +1,14 @@
+services:
+  nats:
+    image: nats:latest
+    container_name: nats
+    command: [ "-js", "-sd", "/data/jetstream" ]
+    ports:
+      - "4222:4222"   # 客户端端口
+      - "8222:8222"   # HTTP 监控端口
+      - "6222:6222"   # 集群路由端口
+    volumes:
+      - nats_data:/data  # 挂载数据目录，存储 JetStream 数据
+
+volumes:
+  nats_data:
