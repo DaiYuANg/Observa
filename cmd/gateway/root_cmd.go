@@ -11,6 +11,6 @@ var rootCmd = &cobra.Command{RunE: func(cmd *cobra.Command, args []string) error
 	if err != nil {
 		return err
 	}
-	newGateway.Run()
+	newGateway.GetApp().Run()
 	return nil
 }}

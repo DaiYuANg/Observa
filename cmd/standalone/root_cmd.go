@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github/DaiYuANg/Observa/internal/admin"
 	"github/DaiYuANg/Observa/internal/gateway"
 
 	"github.com/spf13/cobra"
@@ -10,17 +9,12 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "admin",
 	Short: "Admin service",
-	Run: func(cmd *cobra.Command, args []string) {
-		newAdmin, err := admin.NewAdmin()
+	RunE: func(cmd *cobra.Command, args []string) error {
+		gateway, err := gateway.NewGateway()
 		if err != nil {
-			return
+			return err
 		}
-		newGateway, err := gateway.NewGateway()
-		if err != nil {
-			return
-		}
-		go newGateway.Run()
-		go newAdmin.Run()
-		select {}
+		nap := NewAppContainer(gateway.GetApp())
+		return nap.Run()
 	},
 }

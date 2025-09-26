@@ -20,16 +20,17 @@ var commonOption = fx.Options(
 	}),
 )
 
-func CreateContainer(option ...fx.Option) (*fx.App, error) {
-	options := append(option, commonOption)
-	err := fx.ValidateApp(options...)
-	if err != nil {
-		return nil, err
-	}
-	app := fx.New(
-		commonOption,
-		fx.Options(option...),
-	)
+func CreateContainer(modules ...fx.Option) (*fx.App, []fx.Option, error) {
+	// 合并 commonOption + modules
+	options := append([]fx.Option{commonOption}, modules...)
 
-	return app, nil
+	// 先校验
+	if err := fx.ValidateApp(options...); err != nil {
+		return nil, nil, err
+	}
+
+	// 创建 App
+	app := fx.New(options...)
+
+	return app, options, nil
 }

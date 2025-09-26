@@ -18,7 +18,7 @@ var rootCmd = &cobra.Command{
 			logger.Module,
 			config.Module,
 			db.Module,
-			nats.Module,
+			nats.ClientModule,
 		)
 	},
 }

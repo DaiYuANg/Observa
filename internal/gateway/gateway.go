@@ -9,6 +9,26 @@ import (
 	"go.uber.org/fx"
 )
 
-func NewGateway() (*fx.App, error) {
-	return injector.CreateContainer(router.Module, nats.Module, http.Module)
+type Application struct {
+	options []fx.Option
+	app     *fx.App
+}
+
+func (a Application) GetApp() *fx.App {
+	return a.app
+}
+
+func (a Application) GetOptions() []fx.Option {
+	return a.options
+}
+
+func NewGateway() (*Application, error) {
+	app, options, err := injector.CreateContainer(router.Module, nats.ClientModule, http.Module)
+	if err != nil {
+		return nil, err
+	}
+	return &Application{
+		app:     app,
+		options: options,
+	}, nil
 }
