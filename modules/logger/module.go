@@ -20,7 +20,7 @@ func newLogger() *zap.Logger {
 	core := zapcore.NewCore(
 		zapcore.NewConsoleEncoder(encoderCfg), // 关键：使用 ConsoleEncoder 而不是 JSONEncoder
 		zapcore.AddSync(os.Stdout),
-		zapcore.InfoLevel,
+		zapcore.DebugLevel,
 	)
 
 	logger := zap.New(core)

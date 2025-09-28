@@ -17,7 +17,7 @@ var Module = fx.Module(
 )
 
 func newServer() *fiber.App {
-	app := fiber.New(fiber.Config{Prefork: false, EnablePrintRoutes: true})
+	app := fiber.New(fiber.Config{Prefork: false, EnablePrintRoutes: false, DisableStartupMessage: true})
 
 	return app
 }

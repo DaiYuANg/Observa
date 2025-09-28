@@ -34,8 +34,10 @@ type EventRequest struct {
 	}
 }
 
-func (n *EventEndpoint) OnEvent(ctx context.Context,
-	parameter *EventRequest) (*model.Resp[any], error) {
+func (n *EventEndpoint) OnEvent(
+	ctx context.Context,
+	parameter *EventRequest,
+) (*model.Resp[any], error) {
 	// 如果没有 timestamp，填入当前时间
 	var body = parameter.Body
 	if body.Timestamp == 0 {

@@ -11,7 +11,7 @@ import (
 
 func lifecycle(lc fx.Lifecycle, app *fiber.App) {
 	lc.Append(fx.StartHook(func() {
-		go app.Listen(":8080")
+		go app.Listen(":0")
 	}))
 }
 
